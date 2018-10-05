@@ -7,11 +7,18 @@ module.exports = {
   home: async (ctx, next) => {
     console.log(ctx.request.query)
     console.log(ctx.request.querystring)
-    ctx.response.body = '<h1>HOME page</h1>'
+    // ctx.response.body = '<h1>HOME page</h1>'
+    ctx.send({
+      status: 'success',
+      data: 'welcome to home page!'
+    });
   },
   homeParams: async (ctx, next) => {
     console.log(ctx.params)
     ctx.response.body = '<h1>HOME page /:id/:name</h1>'
+  },
+  error: async (ctx, next) => {
+    ctx.response.body = '<h1>404 not found</h1>';
   },
   login: async (ctx, next) => {
     await ctx.render('home/login', {
